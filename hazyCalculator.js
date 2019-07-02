@@ -1,18 +1,28 @@
 function isSkippedValue(value) {
+  //undefined and empty strings should be ignored; and operators
+  if (value === undefined || value === '') {
+    return true
+  }
+  const operators = ['+', '-', '*', '/']
+  if (operators.includes(value) ) {
+    return false
+  }
   return !value
 }
 
 function isNumericValue(value) {
+  // stringified numbers and NULL should count as numbers
   return !isNaN(value)
 }
 
 function isNothingValue(value) {
-  return value === null
+  return value === null || value === undefined
 }
 
 function isAcceptableValue(value) {
+  // Must be a number or operator
   const operators = ['+', '-', '*', '/']
-  return typeof value === 'Number' || operators.includes(value)
+  return typeof Number(value) === 'number' || operators.includes(value)
 }
 
 function performCalculationStep(firstOperand, operator, secondOperand) {
