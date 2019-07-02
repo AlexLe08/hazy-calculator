@@ -1,8 +1,9 @@
 function isSkippedValue(value) {
-  //undefined and empty strings should be ignored; and operators
+  //undefined and empty strings should be ignored
   if (value === undefined || value === '') {
     return true
   }
+  //checks for operators as well
   const operators = ['+', '-', '*', '/']
   if (operators.includes(value) ) {
     return false
@@ -12,7 +13,17 @@ function isSkippedValue(value) {
 
 function isNumericValue(value) {
   // stringified numbers and NULL should count as numbers
-  return !isNaN(value)
+  if ( value === null){
+    return true
+  }
+  // also check for empty strings and undefined 
+  else if ( value === '' || value === undefined) {
+    return false
+  }
+  else {
+    return !isNaN(value)
+  }
+  
 }
 
 function isNothingValue(value) {
